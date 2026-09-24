@@ -1,16 +1,26 @@
-# React + Vite
+# Asma Turki — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive, single-page portfolio built with React and Vite. The dark navy palette, blue gradients, timeline, and card layouts are inspired by [Yosr Fourati’s portfolio](https://yosr-fourati.github.io/).
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```sh
+npm install
+npm run dev
+```
 
-## React Compiler
+## Checks
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm run lint
+npm run build
+npm run preview
+```
 
-## Expanding the ESLint configuration
+## Content and styling
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Edit `src/App.jsx` for profile content, experience, projects, skills, awards, and contact links. Styles live in `src/App.css` and `src/index.css`. The website uses Google Fonts with local system fallbacks.
+
+## Vercel
+
+Import this GitHub repository into Vercel and select the Vite framework preset. Build command: `npm run build`. Output directory: `dist`. Once the GitHub repository is connected, pushes to the configured production branch trigger deployments. No environment variables are needed.
