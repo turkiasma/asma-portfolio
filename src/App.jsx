@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 const navigation = [
-  "Home",
   "About",
   "Experience",
   "Projects",
@@ -99,7 +98,7 @@ const projects = [
     subtitle: "OffensyLab",
     description:
       "Developed an AI-powered service-matching platform allowing users to create home service requests through voice input and connect with suitable providers.",
-    award: "1st Place · Best Senior Project — MedTech",
+    award: "Best Senior Project Award",
     tags: [
       "Gemini",
       "CatBoost",
@@ -116,14 +115,7 @@ const projects = [
     title: "AI-Powered E-Commerce Assistant",
     description:
       "Developed a full-stack perfume e-commerce platform with secure authentication, product management, REST APIs, and an AI conversational assistant for product recommendations.",
-    tags: [
-      "React.js",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "REST APIs",
-      "AI Assistant",
-    ],
+    tags: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs"],
   },
 ];
 const skills = [
@@ -247,21 +239,39 @@ function Icon({ name, ...props }) {
     </svg>
   );
 }
-function Tags({ items }) {
+function SkillTag({ children }) {
+  const [selected, setSelected] = useState(false);
+  return (
+    <button
+      type="button"
+      className="tag"
+      aria-pressed={selected}
+      onClick={() => setSelected(!selected)}
+    >
+      {children}
+    </button>
+  );
+}
+function Tags({ items, interactive = false, award = false }) {
   return (
     <div className="tags">
-      {items.map((tag) => (
-        <span className="tag" key={tag}>
-          {tag}
-        </span>
-      ))}
+      {items.map((tag) =>
+        interactive ? (
+          <SkillTag key={tag}>{tag}</SkillTag>
+        ) : (
+          <span className="tag" key={tag}>
+            {tag}
+          </span>
+        ),
+      )}
+      {award && <span className="tag tag-green">Award winner</span>}
     </div>
   );
 }
 function Heading({ label, children }) {
   return (
     <header className="section-heading">
-      <p className="eyebrow">// {label}</p>
+      {label && <p className="eyebrow">// {label}</p>}
       <h2>{children}</h2>
     </header>
   );
@@ -321,7 +331,7 @@ function App() {
           aria-label="Asma Turki home"
           onClick={() => setMenuOpen(false)}
         >
-          AT<span>.</span>
+          AT
         </a>
         <button
           className="menu-toggle"
@@ -396,7 +406,7 @@ function App() {
         </section>
         <div className="section-wrap">
           <section id="about" className="section">
-            <Heading label="who I am">About Me</Heading>
+            <Heading>About Me</Heading>
             <div className="about-grid">
               <div className="about-copy">
                 <p>
@@ -449,7 +459,7 @@ function App() {
         </div>
         <div className="section-wrap">
           <section id="experience" className="section">
-            <Heading label="where I’ve worked">Experience</Heading>
+            <Heading>Experience</Heading>
             <div className="timeline">
               {experiences.map((item) => (
                 <article className="experience card" key={item.company}>
@@ -476,7 +486,7 @@ function App() {
         </div>
         <div className="section-wrap">
           <section id="projects" className="section">
-            <Heading label="what I’ve built">Selected Projects</Heading>
+            <Heading>Projects</Heading>
             <div className="projects-grid">
               {projects.map((project, index) => (
                 <article
@@ -490,18 +500,17 @@ function App() {
                     <span className="project-number">0{index + 1}</span>
                   </div>
                   <p className="project-category">{project.category}</p>
+                  {project.award && (
+                    <p className="award-badge">
+                      <span aria-hidden="true">🏆</span> {project.award}
+                    </p>
+                  )}
                   <h3>{project.title}</h3>
                   {project.subtitle && (
                     <p className="project-subtitle">{project.subtitle}</p>
                   )}
                   <p className="project-description">{project.description}</p>
-                  {project.award && (
-                    <p className="award-badge">
-                      <Icon name="award" />
-                      {project.award}
-                    </p>
-                  )}
-                  <Tags items={project.tags} />
+                  <Tags items={project.tags} award={Boolean(project.award)} />
                 </article>
               ))}
             </div>
@@ -509,12 +518,12 @@ function App() {
         </div>
         <div className="section-wrap">
           <section id="skills" className="section">
-            <Heading label="my toolkit">Skills & Technologies</Heading>
+            <Heading>Skills</Heading>
             <div className="skills-grid">
               {skills.map(([name, items]) => (
                 <article className="skill card" key={name}>
                   <h3>{name}</h3>
-                  <Tags items={items} />
+                  <Tags items={items} interactive />
                 </article>
               ))}
             </div>
@@ -606,7 +615,7 @@ function App() {
       </main>
       <footer>
         <a href="#home" className="logo">
-          AT<span>.</span>
+          AT
         </a>
         <p>© {new Date().getFullYear()} Asma Turki</p>
         <a href="#home">Back to top ↑</a>
