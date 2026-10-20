@@ -57,6 +57,30 @@ const experiences = [
 ];
 const projects = [
   {
+    icon: "chart",
+    category: "FINTECH · GENERATIVE AI & DATA",
+    title: "FinSight — AI-Powered Financial Analytics",
+    description:
+      "Developed an interactive financial analytics platform for small businesses, featuring cash flow dashboards, budget tracking, CSV-based analysis, and an AI assistant powered by Qwen for natural-language financial queries.",
+    tags: [
+      "Python",
+      "Streamlit",
+      "Pandas",
+      "Plotly",
+      "Ollama",
+      "Qwen3",
+      "Groq",
+      "FinTech",
+    ],
+    links: [
+      {
+        label: "Live Demo",
+        icon: "arrow",
+        href: "https://finsight-analytics-project.streamlit.app/",
+      },
+    ],
+  },
+  {
     icon: "chat",
     category: "GENERATIVE AI",
     title: "SCSI NL2SQL AI Chatbot",
@@ -511,6 +535,22 @@ function App() {
                   )}
                   <p className="project-description">{project.description}</p>
                   <Tags items={project.tags} award={Boolean(project.award)} />
+                  {project.links?.length > 0 && (
+                    <div className="project-links">
+                      {project.links.map((link) => (
+                        <a
+                          key={link.href}
+                          className="button secondary"
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Icon name={link.icon} />
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </article>
               ))}
             </div>
