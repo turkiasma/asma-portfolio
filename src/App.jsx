@@ -82,6 +82,29 @@ const projects = [
   },
   {
     icon: "chat",
+    category: "FINTECH · NATURAL LANGUAGE PROCESSING & MACHINE LEARNING",
+    title: "Financial Communication Sentiment Analyzer",
+    description:
+      "Built an NLP-powered application using FinBERT to analyze financial documents, classify text segments as positive, negative, or neutral, visualize sentiment distributions and confidence scores, and generate downloadable CSV/PDF reports.",
+    tags: [
+      "Python",
+      "Streamlit",
+      "FinBERT",
+      "Hugging Face Transformers",
+      "PyTorch",
+      "NLP",
+      "FinTech",
+    ],
+    links: [
+      {
+        label: "Live Demo",
+        icon: "arrow",
+        href: "https://financial-communication-sentiment-analyzer.streamlit.app/",
+      },
+    ],
+  },
+  {
+    icon: "chat",
     category: "GENERATIVE AI",
     title: "SCSI NL2SQL AI Chatbot",
     description:
